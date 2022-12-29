@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="01" author="ilvasi">
+
+        <createTable tableName="pet">
+
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false"
+                             unique="true"
+                             primaryKey="true"
+                             primaryKeyName="pk_pet"/>
+            </column>
+
+            <column name="name" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="code" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="color" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="pet_type" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="pet_user_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_pet_user_id" references="pet_user(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

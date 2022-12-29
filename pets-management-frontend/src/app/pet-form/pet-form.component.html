@@ -1,0 +1,94 @@
+
+<div class="row">
+  <div class="col-md-12 order-md-1">
+      <form [formGroup]="petForm" (ngSubmit)="onSaveClick()" class="needs-validation" novalidate>
+
+          <div class="mb-3">
+              <label for="name">Name</label>
+              <div class="input-group">
+                  <input formControlName="name" type="text" class="form-control" id="name" placeholder="Name">
+              </div>
+          </div>
+
+        <div *ngIf="petForm.get('name')!.invalid && (petForm.get('name')!.dirty || petForm.get('name')!.touched)"
+          class="alert alert-danger">
+      
+          <div *ngIf="petForm.get('name')!.errors?.['required']">
+            Name is required.
+          </div>
+          <div *ngIf="petForm.get('name')!.errors?.['minlength']">
+            Name must be at least 4 characters long.
+          </div>
+    
+        </div>
+
+          <div class="mb-3">
+              <label for="code">Code</label>
+              <div class="input-group">
+                  <input formControlName="code" type="text" class="form-control" id="code" placeholder="Code">
+              </div>
+          </div>
+
+        <div *ngIf="petForm.get('code')!.invalid && (petForm.get('code')!.dirty || petForm.get('code')!.touched)"
+          class="alert alert-danger">
+      
+          <div *ngIf="petForm.get('code')!.errors?.['required']">
+            Code is required.
+          </div>
+          <div *ngIf="petForm.get('code')!.errors?.['minlength']">
+            Code must be at least 4 characters long.
+          </div>
+      
+        </div>
+
+          <div class="mb-3">
+              <label for="types">Type</label>
+              <select formControlName="petType" class="custom-select d-block w-100" id="types">
+                  <option value="">Choose...</option>
+                  <option value="Cat">Cat</option>
+                  <option value="Dog">Dog</option>
+                  <option value="Horse">Horse</option>
+                  <option value="Rabbit">Rabbit</option>
+                  <option value="Parrot">Parrot</option>
+              </select>
+          </div>
+
+        <div *ngIf="petForm.get('petType')!.invalid && (petForm.get('petType')!.dirty || petForm.get('petType')!.touched)"
+          class="alert alert-danger">
+      
+          <div *ngIf="petForm.get('petType')!.errors?.['required']">
+            PetType is required.
+          </div>
+      
+        </div>
+
+          <div class="mb-3">
+              <label for="colors">Fur color</label>
+              <select formControlName="color" class="custom-select d-block w-100" id="colors">
+                  <option value="">Choose...</option>
+                  <option value="Black">Black</option>
+                  <option value="White">White</option>
+                  <option value="Brown">Brown</option>
+                  <option value="Yellow">Yellow</option>
+                  <option value="Blue">Blue</option>
+              </select>
+          </div>
+
+          
+        <div *ngIf="petForm.get('color')!.invalid && (petForm.get('color')!.dirty || petForm.get('color')!.touched)"
+          class="alert alert-danger">
+      
+          <div *ngIf="petForm.get('color')!.errors?.['required']">
+            Color is required.
+          </div>
+      
+        </div>
+
+          <button class="btn btn-primary btn-lg btn-block"
+                  type="submit">
+              Save
+          </button>
+      </form>
+  </div>
+</div>
+

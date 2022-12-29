@@ -1,0 +1,48 @@
+<h1 class="mb-4">Login</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onSaveClick()">
+
+  <div *ngIf="error" class="alert alert-danger">
+    <div *ngIf="loginForm.get('username')!.errors?.['required']">
+      Invalid login or password
+    </div>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label  class="form-label" for="usernameForm">Username</label>
+    <input formControlName="username" type="username" id="usernameForm" class="form-control" />
+  </div>
+
+  <div *ngIf="loginForm.get('username')!.invalid && (loginForm.get('username')!.dirty || loginForm.get('username')!.touched)"
+    class="alert alert-danger">
+
+    <div *ngIf="loginForm.get('username')!.errors?.['required']">
+      Username is required.
+    </div>
+    <div *ngIf="loginForm.get('username')!.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </div>
+
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="passwordForm">Password</label>
+    <input formControlName="password" type="password" id="passwordForm" class="form-control" />
+  </div>
+
+  <div *ngIf="loginForm.get('password')!.invalid && (loginForm.get('password')!.dirty || loginForm.get('password')!.touched)"
+  class="alert alert-danger">
+
+    <div *ngIf="loginForm.get('password')!.errors?.['required']">
+      Password is required.
+    </div>
+    <div *ngIf="loginForm.get('password')!.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </div>
+
+  </div>
+
+  <!-- Submit button -->
+  <button  type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+</form>
