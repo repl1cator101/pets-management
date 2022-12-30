@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './jwt.interceptor';
 import { CreatePetComponent } from './create-pet/create-pet.component';
 import { PetFormComponent } from './pet-form/pet-form.component';
+import { EditPetComponent } from './edit-pet/edit-pet.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PetFormComponent } from './pet-form/pet-form.component';
     PetsTableComponent,
     LoginComponent,
     CreatePetComponent,
-    PetFormComponent
+    PetFormComponent,
+    EditPetComponent
   ],
   imports: [
     BrowserModule,
