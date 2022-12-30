@@ -1,6 +1,7 @@
 # pets-management
 
 ## Run Application
+Requred Java 17 and ng cli
 - Run `./gradlew bootrun` from /petsmanagement folder. 
 - Run `ng serve` from /pets-management-frontend folder. Navigate to http://localhost:4200/
 
