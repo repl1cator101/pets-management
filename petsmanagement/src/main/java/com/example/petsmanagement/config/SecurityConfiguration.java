@@ -33,9 +33,8 @@ public class SecurityConfiguration  {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.cors().and().csrf().disable()
                 .authorizeHttpRequests().requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("api/pets").permitAll()
+                .requestMatchers("api/pets").authenticated()
                 .anyRequest().authenticated()
-                //.and().formLogin().loginProcessingUrl("/login").permitAll()
                 .and().authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }

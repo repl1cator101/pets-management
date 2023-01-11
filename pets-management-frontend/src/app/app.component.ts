@@ -9,10 +9,9 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   ngOnInit(): void {
-    console.log("HERE")
     let jwt = localStorage.getItem("jwt")
     if (jwt == null) {
-      this.router.navigateByUrl('/login')
+      this.router.navigate(['/login'])
     }
   }
 

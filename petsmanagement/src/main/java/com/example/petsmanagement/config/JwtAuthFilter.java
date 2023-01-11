@@ -1,6 +1,7 @@
 package com.example.petsmanagement.config;
 
 import com.example.petsmanagement.service.UserService;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @Component
@@ -40,8 +42,20 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         jwtToken = requestTokenHeader.substring(7);
-        username = jwtUtil.extractUsername(jwtToken);
-        if (username != null ){
+
+        if (!jwtUtil.isJwtToken(jwtToken)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        try {
+            username = jwtUtil.extractUsername(jwtToken);
+        } catch (ExpiredJwtException e) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetails.getAuthorities());

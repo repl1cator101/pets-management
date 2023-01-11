@@ -15,7 +15,6 @@ export class PetsService {
   }
 
   getById(id: String) : Observable<Pet> {
-    console.log(id)
     return this.http.get<Pet>(`${this._url}/${id}`);
   }
   

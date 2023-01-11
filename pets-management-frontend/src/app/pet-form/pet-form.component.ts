@@ -35,7 +35,7 @@ export class PetFormComponent implements OnInit{
   }
 
   onSaveClick(){
-    if (this.petForm.get('name')?.valid && this.petForm.get('code') && this.petForm.get('color') && this.petForm.get('petType')) {
+    if (this.petForm.get('name')?.valid && this.petForm.get('code')?.valid && this.petForm.get('color')?.valid && this.petForm.get('petType')?.valid) {
       let pet = {
         id: this.petId,
         name: this.petForm.get('name')?.value,
@@ -44,7 +44,6 @@ export class PetFormComponent implements OnInit{
         petType: this.petForm.get('petType')?.value,
       } as Pet
       this.onSaveEvent.emit(pet);
-      this.router.navigate(['/'])
     }
   }
 
